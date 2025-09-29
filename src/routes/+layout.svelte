@@ -1,22 +1,40 @@
 <!-- src/routes/+layout.svelte -->
 <script lang="ts">
-	import { page } from '$app/state';
-	import { MetaTags, JsonLd, deepMerge } from 'svelte-meta-tags';
+  import "../app.css";
 
-	let { data, children } = $props();
+  import { page } from "$app/state";
+  import { MetaTags, JsonLd, deepMerge } from "svelte-meta-tags";
 
-	// merge layout defaults + per-page overrides (runes: use $derived)
-	const toArr = (v: unknown) => (Array.isArray(v) ? v : v ? [v] : []);
+  let { data, children } = $props();
 
-	let metaTags = $derived(deepMerge(data.baseMetaTags ?? {}, page.data.pageMetaTags ?? {}));
+  const toArr = (v: unknown) => (Array.isArray(v) ? v : v ? [v] : []);
 
-	let schemas = $derived([...toArr(data.baseJsonLd), ...toArr(page.data.pageJsonLd)]);
+  // merge only the known meta fields
+  let metaTags = $derived(
+    deepMerge(data.baseMetaTags ?? {}, page.data.pageMetaTags ?? {}),
+  );
+
+  // keep JSON-LD separate (deepMerge drops unknown keys like jsonLd)
+  type JsonLdBlock = Record<string, unknown>;
+  const schemas: JsonLdBlock[] = $derived([
+    ...(toArr(data.baseJsonLd) as JsonLdBlock[]),
+    ...(toArr(page.data.pageJsonLd) as JsonLdBlock[]),
+  ]);
+
+  const schemaKey = (s: JsonLdBlock, i: number) =>
+    String(
+      (s["@id"] as string) ??
+        (s["url"] as string) ??
+        (s["name"] as string) ??
+        (s["@type"] as string) ??
+        i,
+    );
 </script>
 
 <MetaTags {...metaTags} />
 
-{#each schemas as schema}
-	<JsonLd {schema} />
+{#each schemas as schema, i (schemaKey(schema, i))}
+  <JsonLd {schema} />
 {/each}
 
 {@render children?.()}
