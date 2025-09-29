@@ -1,0 +1,31 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true },
+  "include": [
+    // app
+    "src/**/*.ts",
+    "src/**/*.svelte",
+
+    // tests
+    "tests/**/*.ts",
+    "tests/**/*.mts",
+    "tests/**/*.cts",
+
+    // configs & scripts (split — no brace expansion)
+    "config/**/*.ts",
+    "config/**/*.mts",
+    "config/**/*.cts",
+    "scripts/**/*.ts",
+    "scripts/**/*.mts",
+    "scripts/**/*.cts",
+
+    // top-level configs
+    "vite.config.ts",
+    "playwright.config.ts",
+    "playwright.config.mts",
+    "playwright.config.cts",
+    "pwa.specs.ts",
+    "robots-sitemap.spec.ts"
+  ],
+  "exclude": ["node_modules", ".svelte-kit", "build", "dist"]
+}
