@@ -9,8 +9,9 @@
 			"assertions": {
 				"categories:accessibility": ["warn", { "minScore": 0.95 }],
 				"categories:seo": ["warn", { "minScore": 0.95 }]
-			}
+			},
+			"budgetsFile": "config/lighthouse-budgets.json
 		},
 		"upload": { "target": "temporary-public-storage" }
-	}
+	},
 }

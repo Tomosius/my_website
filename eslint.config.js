@@ -2,6 +2,8 @@
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginSvelte from "eslint-plugin-svelte";
+import jsonc from "eslint-plugin-jsonc";
+import yml from "eslint-plugin-yml";
 import globals from "globals";
 import prettier from "eslint-config-prettier";
 import { includeIgnoreFile } from "@eslint/compat";
@@ -24,6 +26,10 @@ export default [
   ...pluginSvelte.configs["flat/recommended"],
   prettier,
   ...pluginSvelte.configs["flat/prettier"],
+  // JSON / JSONC linting
+  ...jsonc.configs["recommended-with-json"],
+  // YAML linting
+  ...yml.configs["flat/recommended"],
 
   // Svelte files
   {
