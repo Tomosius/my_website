@@ -3,6 +3,9 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"engines": {
+		"node": ">=20"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -10,12 +13,26 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint ."
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --config config/.prettierrc --ignore-path config/.prettierignore --write .",
+		"format:check": "prettier --config config/.prettierrc --ignore-path config/.prettierignore --check .",
+		"lint:html": "html-validate --config config/html-validate.json --formatter stylish \"build/**/*.html\"",
+		"validate:html": "vnu --errors-only --skip-non-html build",
+		"serve:build": "serve -s build -l 4173",
+		"check:links": "start-server-and-test \"npm run serve:build\" http://localhost:4173 \"linkinator http://localhost:4173 --config config/linkinator.config.json\"",
+		"test:e2e": "playwright test -c config/playwright.config.ts",
+		"test:e2e:ui": "playwright test -c config/playwright.config.ts --ui",
+		"audit:seo": "lhci autorun --config=config/lighthouserc.json",
+		"ci:html": "npm run build && npm run lint:html && npm run validate:html && npm run check:links && npm run test:e2e && npm run audit:seo",
+		"postinstall": "playwright install",
+		"postbuild": "node config/generate-sitemap.mjs"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.10.2",
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.22.0",
+		"@lhci/cli": "^0.15.1",
+		"@playwright/test": "^1.55.1",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.22.0",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
@@ -27,14 +44,26 @@
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^3.0.0",
 		"globals": "^16.0.0",
-		"prettier": "^3.4.2",
-		"prettier-plugin-svelte": "^3.3.3",
-		"prettier-plugin-tailwindcss": "^0.6.11",
+		"html-validate": "^10.0.0",
+		"linkinator": "^6.1.4",
+		"prettier": "^3.6.2",
+		"prettier-plugin-svelte": "^3.4.0",
+		"prettier-plugin-tailwindcss": "^0.6.14",
+		"serve": "^14.2.5",
+		"start-server-and-test": "^2.1.2",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
+		"svelte-meta-tags": "^4.4.1",
 		"tailwindcss": "^4.0.0",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.20.0",
-		"vite": "^7.0.4"
+		"vite": "^7.0.4",
+		"vnu-jar": "^24.10.17"
+	},
+	"overrides": {
+		"cookie": "^0.7.0",
+		"tmp": "^0.2.4",
+		"ws": "^8.18.0",
+		"tar-fs": "^3.0.6"
 	}
 }
