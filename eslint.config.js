@@ -18,7 +18,16 @@ const __dirname = path.dirname(__filename);
 export default [
   // Respect .gitignore + typical build folders
   includeIgnoreFile(gitignorePath),
-  { ignores: [".svelte-kit/**", "build/**", "dist/**"] },
+  {
+    ignores: [
+      ".svelte-kit/**",
+      "build/**",
+      "dist/**",
+      "playwright-report/**",
+      ".lighthouseci/**",
+      "coverage/**",
+    ],
+  },
 
   // Base stacks
   js.configs.recommended,
@@ -27,7 +36,7 @@ export default [
   prettier,
   ...pluginSvelte.configs["flat/prettier"],
   // JSON / JSONC linting
-  ...jsonc.configs["recommended-with-json"],
+  ...jsonc.configs["flat/recommended-with-json"],
   // YAML linting
   ...yml.configs["flat/recommended"],
 
