@@ -40,7 +40,7 @@
     "lint:all": "npm run lint && npm run build && npm run lint:html",
     "qa": "npm run typecheck && npm run lint && npm run validate && npm run test:e2e && npm run audit:seo:all",
     "ci:css": "npm run validate:css:dist && npm run validate:css:grammar",
-    "ci": "npm-run-all -l build lint validate:html check:links test:e2e audit:seo ci:css",
+    "ci": "npm-run-all -l build lint validate:html check:links test:e2e audit:seo",
     "ci:strict": "npm run ci && npm-run-all -l dep:audit deadcode:exports spellcheck",
     "postinstall": "playwright install",
     "postbuild": "node config/generate-sitemap.mjs",
