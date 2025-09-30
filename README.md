@@ -32,74 +32,74 @@ npm run preview
 
 ### Core dev/build
 
-| Script | What it does |
-|---|---|
-| `dev` | Vite dev server |
-| `build` | Production build (`vite build`) |
-| `preview` | Preview production build |
-| `serve:build` | Serve `build/` on port 4173 (used by link checks) |
-| `prepare` | Runs `svelte-kit sync` after install |
-| `typecheck` | `svelte-check --tsconfig ./tsconfig.json --fail-on-warnings` |
-| `typecheck:tsc` | Bare `tsc -p tsconfig.json --noEmit` |
+| Script          | What it does                                                 |
+| --------------- | ------------------------------------------------------------ |
+| `dev`           | Vite dev server                                              |
+| `build`         | Production build (`vite build`)                              |
+| `preview`       | Preview production build                                     |
+| `serve:build`   | Serve `build/` on port 4173 (used by link checks)            |
+| `prepare`       | Runs `svelte-kit sync` after install                         |
+| `typecheck`     | `svelte-check --tsconfig ./tsconfig.json --fail-on-warnings` |
+| `typecheck:tsc` | Bare `tsc -p tsconfig.json --noEmit`                         |
 
 ### Formatting
 
-| Script | What it does |
-|---|---|
-| `format` | Prettier write over repo (Svelte + Tailwind plugin) |
-| `format:check` | Prettier check only |
+| Script         | What it does                                        |
+| -------------- | --------------------------------------------------- |
+| `format`       | Prettier write over repo (Svelte + Tailwind plugin) |
+| `format:check` | Prettier check only                                 |
 
 ### Linters (source)
 
-| Script | What it does |
-|---|---|
-| `lint:ts` | ESLint for `.ts` and `.svelte` (type‑aware) |
-| `lint:css` | Stylelint for authoring CSS & `<style>` in Svelte |
-| `lint:css:fix` | Stylelint auto‑fix where safe |
-| `lint` | Runs `lint:ts`, `lint:css`, `lint:json`, `lint:yaml` in parallel |
-| `lint:json` | ESLint for JSON / JSONC |
-| `lint:yaml` | ESLint for YAML / YML |
+| Script         | What it does                                                     |
+| -------------- | ---------------------------------------------------------------- |
+| `lint:ts`      | ESLint for `.ts` and `.svelte` (type‑aware)                      |
+| `lint:css`     | Stylelint for authoring CSS & `<style>` in Svelte                |
+| `lint:css:fix` | Stylelint auto‑fix where safe                                    |
+| `lint`         | Runs `lint:ts`, `lint:css`, `lint:json`, `lint:yaml` in parallel |
+| `lint:json`    | ESLint for JSON / JSONC                                          |
+| `lint:yaml`    | ESLint for YAML / YML                                            |
 
 ### Validate built output
 
-| Script | What it does |
-|---|---|
-| `lint:html` | `html-validate` over `build/**/*.html` |
-| `validate:html` | W3C Nu HTML checker (`vnu`) for `build/` |
-| `validate:links` | Starts preview, then `linkinator` against `http://localhost:4173` |
-| `validate:css` | Stylelint over compiled CSS in `build/_app/**/*.css` |
-| `validate:css:grammar` | **Structural** CSS validation via `css-tree` parser |
-| `validate` | Build once, then `lint:html` + `validate:html` + `validate:css:grammar` |
+| Script                 | What it does                                                            |
+| ---------------------- | ----------------------------------------------------------------------- |
+| `lint:html`            | `html-validate` over `build/**/*.html`                                  |
+| `validate:html`        | W3C Nu HTML checker (`vnu`) for `build/`                                |
+| `validate:links`       | Starts preview, then `linkinator` against `http://localhost:4173`       |
+| `validate:css`         | Stylelint over compiled CSS in `build/_app/**/*.css`                    |
+| `validate:css:grammar` | **Structural** CSS validation via `css-tree` parser                     |
+| `validate`             | Build once, then `lint:html` + `validate:html` + `validate:css:grammar` |
 
 ### Tests & audits
 
-| Script | What it does |
-|---|---|
-| `test:e2e` | Playwright tests (config at `config/playwright.config.ts`) |
-| `test:e2e:ui` | Playwright in UI mode |
-| `audit:seo` | Lighthouse CI (LHCI) autorun |
+| Script        | What it does                                               |
+| ------------- | ---------------------------------------------------------- |
+| `test:e2e`    | Playwright tests (config at `config/playwright.config.ts`) |
+| `test:e2e:ui` | Playwright in UI mode                                      |
+| `audit:seo`   | Lighthouse CI (LHCI) autorun                               |
 
 ### QA / CI bundles
 
-| Script | What it does |
-|---|---|
-| `lint:all` | Source linters + build + HTML lint |
-| `qa` | Typecheck → lint → validate (built) → Playwright → Lighthouse |
-| `ci` | Convenience CI bundle using `npm-run-all` |
-| `ci:strict` | `ci` + dep audit + deadcode + spellcheck |
+| Script      | What it does                                                  |
+| ----------- | ------------------------------------------------------------- |
+| `lint:all`  | Source linters + build + HTML lint                            |
+| `qa`        | Typecheck → lint → validate (built) → Playwright → Lighthouse |
+| `ci`        | Convenience CI bundle using `npm-run-all`                     |
+| `ci:strict` | `ci` + dep audit + deadcode + spellcheck                      |
 
 ### Extras
 
-| Script | What it does |
-|---|---|
-| `optimize:svg` | SVGO over `static/` (recursive) |
-| `analyze` | Build with rollup visualizer (bundle treemap at `build/stats.html`) |
-| `dep:audit` | `npm audit --omit=dev` (non‑fatal) |
-| `dep:updates` | Show available dependency updates via `npm-check-updates` |
-| `deadcode:exports` | `ts-prune` to find unused TS exports |
-| `deadcode:files` | `knip` to find unused files/deps |
-| `spellcheck` | `cspell` over sources |
-| `check:links:prod` | `linkinator` against your live site (`https://pecuk.dev`) |
+| Script             | What it does                                                        |
+| ------------------ | ------------------------------------------------------------------- |
+| `optimize:svg`     | SVGO over `static/` (recursive)                                     |
+| `analyze`          | Build with rollup visualizer (bundle treemap at `build/stats.html`) |
+| `dep:audit`        | `npm audit --omit=dev` (non‑fatal)                                  |
+| `dep:updates`      | Show available dependency updates via `npm-check-updates`           |
+| `deadcode:exports` | `ts-prune` to find unused TS exports                                |
+| `deadcode:files`   | `knip` to find unused files/deps                                    |
+| `spellcheck`       | `cspell` over sources                                               |
+| `check:links:prod` | `linkinator` against your live site (`https://pecuk.dev`)           |
 
 ---
 
@@ -127,15 +127,15 @@ Defined in `package.json` to drive PostCSS and Stylelint’s compatibility check
 
 ```json
 {
-  "browserslist": [
-    "Chrome >= 112",
-    "Edge >= 122",
-    "Firefox >= 113",
-    "Safari >= 16.4",
-    "iOS >= 16.4",
-    "not op_mini all",
-    "ios_saf >= 16.4"
-  ]
+	"browserslist": [
+		"Chrome >= 112",
+		"Edge >= 122",
+		"Firefox >= 113",
+		"Safari >= 16.4",
+		"iOS >= 16.4",
+		"not op_mini all",
+		"ios_saf >= 16.4"
+	]
 }
 ```
 
