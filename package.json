@@ -125,5 +125,8 @@
     "iOS >= 16.4",
     "not op_mini all",
     "ios_saf >= 16.4"
-  ]
+  ],
+  "dependencies": {
+    "tailwindcss-palette-generator": "^1.6.1"
+  }
 }
