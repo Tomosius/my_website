@@ -17,9 +17,9 @@ export default {
     forms,
     typography,
     palette({
-      bgtop: "#2c2c54",
-      bgmid: "#1f1f3d",
-      bgbottom: "#1a1a33",
+      pec_dark: "#2c2c54",
+      pec_med: "#1f1f3d",
+      pec_light: "#1a1a33",
       glowtop: "rgba(139, 92, 246, 0.18)",
       glowside: "rgba(79, 70, 229, 0.12)",
       accent: "#8b5cf6",

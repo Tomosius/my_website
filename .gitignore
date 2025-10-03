@@ -1,23 +1,47 @@
-node_modules
+# Node / logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
 
-# Output
-.output
-.vercel
-.netlify
-.wrangler
-/.svelte-kit
-/build
+# SvelteKit / builds
+.svelte-kit/
+build/
+dist/
+.output/
+.vercel/
+.netlify/
+.wrangler/
 
-# OS
-.DS_Store
-Thumbs.db
+# Vite / rollup artifacts
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+stats.html             # rollup-plugin-visualizer
 
-# Env
+# Tests & coverage
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.vitest/
+
+# Linters / spellcheck caches
+.eslintcache
+.stylelintcache
+.cspellcache
+.ruff_cache/
+
+# Lighthouse CI artifacts (keep .lighthouserc*)
+.lighthouseci/
+
+# Env files (keep examples)
 .env
 .env.*
 !.env.example
 !.env.test
 
-# Vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+# OS / editors
+**/.DS_Store
+**/Thumbs.db
+.vscode/
+.idea/
