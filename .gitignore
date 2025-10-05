@@ -33,6 +33,7 @@ blob-report/
 
 # Lighthouse CI artifacts (keep .lighthouserc*)
 .lighthouseci/
+.lighthouseci
 
 # Env files (keep examples)
 .env
